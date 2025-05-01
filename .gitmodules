@@ -1,0 +1,6 @@
+[submodule "lucene"]
+	path = lucene
+	url = https://github.com/apache/lucene.git
+[submodule "lucene-kmp"]
+	path = lucene-kmp
+	url = https://github.com/nehemiaharchives/lucene-kmp.git

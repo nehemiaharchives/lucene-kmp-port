@@ -1,0 +1,6 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="test-framework-jvm-1.0.0">
+    <output-path>$PROJECT_DIR$/lucene-kmp/test-framework/build/libs</output-path>
+    <root id="archive" name="test-framework-jvm-1.0.0.jar" />
+  </artifact>
+</component>

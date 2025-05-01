@@ -1,0 +1,5 @@
+.idea/workspace.xml
+.idea/tasks.xml       # personal tasks
+.idea/shelf/          # local code reviews
+.idea/**/target/     # plugin or framework outputs
+
