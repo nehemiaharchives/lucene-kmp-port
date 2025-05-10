@@ -1,0 +1,43 @@
+services:
+  openhands:
+    image: docker.all-hands.dev/all-hands-ai/openhands:0.37
+    container_name: openhands-app
+    environment:
+      #- BACKEND_HOST=${BACKEND_HOST:-"0.0.0.0"}
+      - SANDBOX_API_HOSTNAME=host.docker.internal
+
+      # Runtime image pulled for every sandbox
+      #- SANDBOX_RUNTIME_CONTAINER_IMAGE=docker.all-hands.dev/all-hands-ai/runtime:0.37-nikolaik
+      - SANDBOX_RUNTIME_CONTAINER_IMAGE=joelhandwell/openhands-runtime
+      #- WORKSPACE_MOUNT_PATH=${WORKSPACE_BASE:-$PWD/workspace}
+      
+      # Propagate environment variables into the sandbox runtime
+      #- SANDBOX_RUNTIME_STARTUP_ENV_VARS={"JAVA_HOME":"/opt/jdk","ANDROID_HOME":"/opt/android-sdk"}
+
+      # Startup tuning
+      #- SANDBOX_TIMEOUT=3600
+
+      # OpenHands & Docker settings
+      - LOG_ALL_EVENTS=true
+      - DOCKER_CLIENT_TIMEOUT=3600
+      - COMPOSE_HTTP_TIMEOUT=3600
+
+    ports:
+      - "3000:3000" 
+
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+    volumes:
+      #- ./config.toml:/app/config.toml:ro
+      - /var/run/docker.sock:/var/run/docker.sock            # Docker-in-Docker
+      - ~/.openhands-state:/.openhands-state                 # Persistent state
+      #- ${WORKSPACE_BASE:-./workspace}:/opt/workspace_base   # Project files
+      #- /usr/lib/jvm/temurin-24-jdk-amd64:/usr/lib/jvm/temurin-24-jdk-amd64
+      #- /media/joel/tools/Android:/media/joel/tools/Android
+      #- ~/.gradle:/root/.gradle
+
+    pull_policy: always
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
