@@ -1,10 +1,10 @@
 #!/bin/sh
 # -*- mode: shell-script -*-
 
-docker build -t joelhandwell/openhands-runtime:0.37-kmp -t joelhandwell/openhands-runtime:latest .
+docker build -t joelhandwell/openhands-runtime:0.38-kmp -t joelhandwell/openhands-runtime:latest .
 
 if [ $? -eq 0 ]; then
-  docker push joelhandwell/openhands-runtime:0.37-kmp
+  docker push joelhandwell/openhands-runtime:0.38-kmp
   docker push joelhandwell/openhands-runtime:latest
 else
   echo "Build failed—skipping push." >&2

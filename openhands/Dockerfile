@@ -1,4 +1,4 @@
-FROM docker.all-hands.dev/all-hands-ai/runtime:0.37-nikolaik
+FROM docker.all-hands.dev/all-hands-ai/runtime:0.38-nikolaik
 
 RUN curl -fL https://github.com/adoptium/temurin24-binaries/releases/download/jdk-24.0.1%2B9/OpenJDK24U-jdk_x64_linux_hotspot_24.0.1_9.tar.gz -o /tmp/jdk24.tar.gz && \
     mkdir -p /opt/jdk && \
@@ -14,3 +14,5 @@ RUN mkdir -p /opt/android-sdk/cmdline-tools && \
 ENV JAVA_HOME=/opt/jdk ANDROID_SDK_ROOT=/opt/android-sdk
 
 RUN yes | /opt/android-sdk/cmdline-tools/latest/bin/sdkmanager --licenses
+
+COPY ./action_execution_server.py /openhands/code/openhands/runtime/action_execution_server.py
