@@ -3,3 +3,4 @@
 .idea/shelf/          # local code reviews
 .idea/**/target/     # plugin or framework outputs
 
+openhands/workspace

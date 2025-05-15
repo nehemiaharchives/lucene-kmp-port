@@ -21,7 +21,7 @@
           </compositeBuild>
         </compositeConfiguration>
         <option name="externalProjectPath" value="$PROJECT_DIR$/lucene" />
-        <option name="gradleJvm" value="openjdk-23" />
+        <option name="gradleJvm" value="temurin-24" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/lucene" />
@@ -74,7 +74,7 @@
       </GradleProjectSettings>
       <GradleProjectSettings>
         <option name="externalProjectPath" value="$PROJECT_DIR$/lucene-kmp" />
-        <option name="gradleJvm" value="openjdk-23" />
+        <option name="gradleJvm" value="temurin-24" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$/lucene-kmp" />
