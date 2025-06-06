@@ -1,4 +1,8 @@
 .idea/workspace.xml
+.idea/compiler.xml
+.idea/gradle.xml
+.idea/misc.xml
+.idea/vcs.xml
 .idea/tasks.xml       # personal tasks
 .idea/shelf/          # local code reviews
 .idea/**/target/     # plugin or framework outputs
