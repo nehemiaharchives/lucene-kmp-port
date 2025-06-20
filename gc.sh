@@ -5,8 +5,8 @@ set -euo pipefail
 SRC="$HOME/.gradle"
 DST="$(pwd)/gc"
 RELEASE_DIR="$DST/releases"
-RELEASE_VERSION="1.0"
-KOTLIN_VERSION="2.1.21"
+RELEASE_VERSION="1.2"
+KOTLIN_VERSION="2.2.0-RC3"
 
 echo "➡️  Creating $DST"
 mkdir -p "$DST/caches"
