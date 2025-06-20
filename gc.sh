@@ -5,6 +5,8 @@ set -euo pipefail
 SRC="$HOME/.gradle"
 DST="$(pwd)/gc"
 RELEASE_DIR="$DST/releases"
+RELEASE_VERSION="1.0"
+KOTLIN_VERSION="2.1.21"
 
 echo "➡️  Creating $DST"
 mkdir -p "$DST/caches"
@@ -40,7 +42,7 @@ else
   echo "⚠️  No ~/.konan/dependencies found; skipping."
 fi
 
-PREBUILT="kotlin-native-prebuilt-linux-x86_64-2.1.21"
+PREBUILT="kotlin-native-prebuilt-linux-x86_64-$KOTLIN_VERSION"
 if [ -d "$HOME/.konan/$PREBUILT" ]; then
   echo "Copying $PREBUILT…"
   mkdir -p "$DST/.konan/$PREBUILT"
@@ -101,10 +103,9 @@ echo "✅  Offline cache tarballs generated in $RELEASE_DIR"
 
 echo "download them from following urls:"
 
-echo "https://github.com/nehemiaharchives/lucene-kmp-gc/releases/download/1.0/android.tar.gz"
-echo "https://github.com/nehemiaharchives/lucene-kmp-gc/releases/download/1.0/caches_jars.tar.gz"
-echo "https://github.com/nehemiaharchives/lucene-kmp-gc/releases/download/1.0/caches_modules-2.tar.gz"
-echo "https://github.com/nehemiaharchives/lucene-kmp-gc/releases/download/1.0/wrapper.tar.gz"
-echo "https://github.com/nehemiaharchives/lucene-kmp-gc/releases/download/1.0/konan_dependencies.tar.gz"
-echo "https://github.com/nehemiaharchives/lucene-kmp-gc/releases/download/1.0/konan_native_prebuilt.tar.gz"
-
+echo "https://github.com/nehemiaharchives/lucene-kmp-gc/releases/download/$RELEASE_VERSION/android.tar.gz"
+echo "https://github.com/nehemiaharchives/lucene-kmp-gc/releases/download/$RELEASE_VERSION/caches_jars.tar.gz"
+echo "https://github.com/nehemiaharchives/lucene-kmp-gc/releases/download/$RELEASE_VERSION/caches_modules-2.tar.gz"
+echo "https://github.com/nehemiaharchives/lucene-kmp-gc/releases/download/$RELEASE_VERSION/wrapper.tar.gz"
+echo "https://github.com/nehemiaharchives/lucene-kmp-gc/releases/download/$RELEASE_VERSION/konan_dependencies.tar.gz"
+echo "https://github.com/nehemiaharchives/lucene-kmp-gc/releases/download/$RELEASE_VERSION/konan_native_prebuilt.tar.gz"
