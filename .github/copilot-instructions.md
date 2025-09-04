@@ -41,8 +41,43 @@ Under this directory you find two sub directories:
 
 ## Running Unit Tests
 
+### writing code, then compile then run tests
+1. First write the code, then run `./gradlew compileKotlinJvm` and `./gradlew compileTestKotlinJvm` to check if there are compilation errors.
+2. If you encounter compilation errors, find out the cause of the error, edit the code to fix the error, then repeat step 1.
+3. If there is no compilation error, run unit tests, but run specific test class which you just ported or modified, not all tests.
+4. If the specific test fails, find out the cause of the failure, edit the code to fix the error, then repeat step 3.
+5. If the specific test passes, run `./gradlew jvmTest` to run all jvm tests.
+6. If all jvm tests pass, run `./gradlew allTests` to run all tests for all platforms.
+
 ### Priority 1, JetBrains MCP Server
 When you have access to JetBrains MCP server, you should use the IDEA's internal test runner. Using the mcp, find run configuration then run test via found run configuration to compile, test, read test result and do other works needed for debugging and development.
 
 ### Priority 2, Gradle command line
 When you don't have access to JetBrains MCP server, you should use the command line Gradle test runner.
+
+## Additional Unit Test Porting Rules
+
+- **Parity with Java tests**
+    - All Lucene unit tests should be *ported*, not newly created. Keep method names, signatures, and local variable names **exactly** the same as the original Java tests.
+    - Replace Java assertions (`assertTrue`, `assertEquals`, etc.) with the equivalent Kotlin test assertions.
+    - Do not invent new tests or expectations beyond what exists in the Java source.
+
+- **Package mapping**
+    - For Lucene packages (`analysis, codecs, document, index, internal, search, store, util`), map:
+        - `org.apache.lucene.*` → `org.gnit.lucenekmp.*` (for both code and tests).
+    - For JDK classes missing from Kotlin stdlib, always check `org.gnit.lucenekmp.jdkport.*` first. If absent, port the class/method and add unit tests there.
+
+- **Superclass methods**
+    - If the class under test is a subclass of an abstract or base class and the subclass does not override some methods, create tests for those inherited methods as well.
+
+- **Naming convention for jdkport tests**
+    - For each ported JDK class, create a test named `ClassNameTest.kt`. Example:
+        - `org.gnit.lucenekmp.jdkport.CharacterTest`
+        - `org.gnit.lucenekmp.jdkport.Inet4AddressTest`
+
+- **Test ordering / coverage**
+    - JDK ported classes have tests created in alphabetical order. Interfaces and abstract classes can be skipped for direct tests.
+
+- **Examples**
+    - Java: `org.apache.lucene.util.TestUnicodeUtil`  
+      Kotlin: `org.gnit.lucenekmp.util.TestUnicodeUtil`
